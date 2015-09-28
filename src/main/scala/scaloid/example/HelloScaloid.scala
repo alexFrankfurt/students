@@ -6,6 +6,8 @@ import android.graphics.Color
 class HelloScaloid extends SActivity {
   lazy val meToo = new STextView("Me too")
 
+  implicit val loggingTag = LoggerTag("HelloLogging")
+
   onCreate {
     contentView = new SVerticalLayout {
       style {
@@ -15,6 +17,7 @@ class HelloScaloid extends SActivity {
       }
       STextView("I am 10 dip tall")
       meToo.here
+      info("Hi there")
       STextView("I am 15 dip tall") textSize 15.dip // overriding
       new SLinearLayout {
         STextView("Button: ")
