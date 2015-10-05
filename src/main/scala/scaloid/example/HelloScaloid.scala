@@ -21,7 +21,7 @@ class HelloScaloid extends SActivity {
       STextView("I am 15 dip tall") textSize 15.dip // overriding
       new SLinearLayout {
         STextView("Button: ")
-        SButton(R.string.red)
+        SButton(R.string.red) onClick startActivity[Info]
         STextView(R.string.text)
       }.wrap.here
       SEditText("Yellow input field fills the space").fill

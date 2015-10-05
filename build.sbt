@@ -1,4 +1,4 @@
-name := "vk"
+name := "students"
 
 import android.Keys._
 android.Plugin.androidBuild
