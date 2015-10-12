@@ -1,4 +1,4 @@
-package scaloid.example
+package com.alex
 
 import org.scaloid.common._
 
