@@ -16,9 +16,15 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name="com.alex.Info"
+    <activity android:name=".activity.Info"
               android:label="New!">
     </activity>
+      <provider
+          android:authorities="com.alex"
+          android:name=".StudentProvider"
+          android:exported="true"
+          android:grantUriPermissions="true">
+      </provider>
   </application>
 
 </manifest>

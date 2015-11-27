@@ -2,7 +2,7 @@ package com.alex
 
 import android.view.{ViewGroup, View}
 import android.widget.BaseAdapter
-import org.scaloid.common.{SLinearLayout, SContext, STextView}
+import org.scaloid.common.{TraitViewGroup, SLinearLayout, SContext, STextView}
 import model.Product
 import collection.mutable
 
@@ -15,10 +15,12 @@ class CuteAdapter(context: SContext, obs: mutable.ArrayBuffer[Product]) extends 
   override def getItem(position: Int): AnyRef = obs(position)
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+    implicit val par: TraitViewGroup[_] = parent
     implicit val ctx = context
-    new SLinearLayout {
-      STextView(obs(position).name)
-    }
+    val elem = layout.elementView
+    val tex = elem.findViewById(100).asInstanceOf[STextView]
+    tex.text = getItem(position).asInstanceOf[Product].name
+    elem
   }
 }
 

@@ -1,5 +1,7 @@
 package com.alex
 
+import com.alex.activity.Info
+import com.alex.mixin.PersonTableActable
 import org.scaloid.common._
 import model.Product
 import style.main
@@ -7,8 +9,8 @@ import style.main
 import scala.collection.mutable
 
 
-class MainActivity extends SActivity { self =>
-  val data = mutable.ArrayBuffer(Product("bread"), Product("meat"))
+class MainActivity extends SActivity with PersonTableActable { self =>
+  val data = mutable.ArrayBuffer(Product("bread"), Product("meat"), Product("but"), Product("cool"))
   lazy val meToo = new STextView("Me too")
 
   lazy val listV = new SListView()
@@ -17,17 +19,12 @@ class MainActivity extends SActivity { self =>
 
   onCreate {
     contentView = new SVerticalLayout {
-//      style(main(meToo))
-//      STextView("I am 10 dip tall")
-//      meToo.here
-//      info("Hi there")
-//      STextView("I am 15 dip tall") textSize 15.dip // overriding
-//      new SLinearLayout {
-//        STextView("Button: ")
-//        SButton(R.string.red) onClick startActivity[Info]
-//        STextView(R.string.text)
-//      }.wrap.here
-//      SEditText("Yellow input field fills the space").fill
+      new SLinearLayout {
+        STextView("Button: ")
+        SButton(R.string.red) onClick startActivity[Info]
+        STextView(R.string.text)
+      }.wrap.here
+
       val adapter = CuteAdapter(self, data)
       listV.adapter = adapter
       listV.here
@@ -35,7 +32,10 @@ class MainActivity extends SActivity { self =>
         toast("Added!")
         data += Product("meaaat!!!")
         adapter.notifyDataSetChanged()
+        contentResolver
       }
+      SButton("add student") onClick insertStudent(student)
+      SButton("show students") onClick toast(queryStudents())
     } padding 20.dip
   }
 }

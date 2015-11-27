@@ -1,4 +1,4 @@
-package com.alex
+package com.alex.activity
 
 import org.scaloid.common._
 
